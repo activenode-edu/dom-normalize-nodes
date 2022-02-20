@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebDev Quickie: Node Normalization</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css"
+      integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body style="padding: 3rem">
+    <h1>WebDev Quickie:</h1>
+
+    <div id="text1">Hello! I am Text Number 1.</div>
+
+    <div id="text2">Though I am Text Number2!</div>
+
+    <hr>
+    <h2>Resulting Text:</h2>
+    <div id="checkNodesHere"></div>
+
+    <hr>
+    <p><h3>Nodes in Resulting Text: <span id="nodesInResultingText"></span></h3></p>
+
+    <script>
+      const nodesViewer = document.getElementById("nodesInResultingText");
+      const resultingText = document.getElementById("checkNodesHere");
+      const text1 = document.getElementById("text1");
+      const text2 = document.getElementById("text2");
+
+      const text1Text = text1.childNodes[0];
+      const text2Text = text2.childNodes[0];
+
+      resultingText.appendChild(text1Text);
+      resultingText.appendChild(text2Text);
+
+      resultingText.normalize();
+
+      setInterval(() => {
+        nodesViewer.innerText = resultingText.childNodes.length;
+        ("");
+      }, 300);
+
+      // add useless Nodes with this Script:
+    //   Array.from({length: 999}).forEach(() => {
+    //     const n = document.createTextNode('');
+    //     resultingText.appendChild(n);
+    //   });
+    </script>
+  </body>
+</html>
